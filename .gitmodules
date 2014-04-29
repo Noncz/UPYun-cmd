@@ -1,0 +1,3 @@
+[submodule "upyun"]
+	path = upyun
+	url = https://github.com/upyun/python-sdk.git

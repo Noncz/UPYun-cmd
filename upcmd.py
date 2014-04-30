@@ -9,6 +9,7 @@ import datetime
 import optparse
 
 from cmd import Cmd
+
 from upyun import UpYun, UpYunClientException, UpYunServiceException
 from util import basename, isdir, walk, exists, pretty_print
 
@@ -21,7 +22,7 @@ class Shell(Cmd):
         self.up = up
         self.current = "/"
         Cmd.__init__(self)
-    """
+
     def completedefault(self, *ignore):
         path = self.current
         ret = []
@@ -29,6 +30,7 @@ class Shell(Cmd):
         ret.extend(dirs)
         ret.extend(files)
         return ret
+
     """
     def complete_cd(self, text):
         _, dirs, _ = walk(self.up, self.current)
@@ -37,7 +39,7 @@ class Shell(Cmd):
         else:
             completions =[d for d in dirs if d.startswith(text)]
         return completions
-
+    """
     def help_cd(self):
         print '''This command is use for changing directory.'''
 
@@ -259,7 +261,7 @@ def Get(up, src, dst, output=True):
 
 def Del(up, dst, ask=True, output=True):
     if ask:
-        ans = raw_input("do you want to remove %s?(yes/no) " % dst)
+        ans = raw_input("do you want to remove %s? (yes/no) " % dst)
         if ans == "yes":
             pass
         else:
@@ -338,7 +340,7 @@ def Interactive(up):
         try:
             shell.cmdloop()
         except:
-            print "cmd crashed"
+            print "Cmd crashed and Restart"
 
 
 def handle(up, options):
